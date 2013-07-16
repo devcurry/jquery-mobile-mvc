@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="jQMOrderDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="jQMOrderDBModelStoreContainer">
+    <EntitySet Name="Orders" EntityType="jQMOrderDBModel.Store.Orders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="jQMOrderDBModel.Store.Products" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Order__ProductId__276EDEB3" Association="jQMOrderDBModel.Store.FK__Order__ProductId__276EDEB3">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" Nullable="false" />
+    <Property Name="CustomerName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="UnitPrice" Type="int" Nullable="false" />
+    <Property Name="TotalPrice" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UnitPrice" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Order__ProductId__276EDEB3">
+    <End Role="Product" Type="jQMOrderDBModel.Store.Products" Multiplicity="1" />
+    <End Role="Order" Type="jQMOrderDBModel.Store.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="jQMOrderDBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="jQMOrderDBEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Orders" EntityType="jQMOrderDBModel.Order" />
+          <EntitySet Name="Products" EntityType="jQMOrderDBModel.Product" />
+          <AssociationSet Name="FK__Order__ProductId__276EDEB3" Association="jQMOrderDBModel.FK__Order__ProductId__276EDEB3">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Type="Int32" Name="OrderId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ProductId" Nullable="false" />
+          <Property Type="String" Name="CustomerName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Int32" Name="UnitPrice" Nullable="false" />
+          <Property Type="Int32" Name="TotalPrice" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="jQMOrderDBModel.FK__Order__ProductId__276EDEB3" FromRole="Order" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Type="Int32" Name="ProductId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="UnitPrice" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="jQMOrderDBModel.FK__Order__ProductId__276EDEB3" FromRole="Product" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK__Order__ProductId__276EDEB3">
+          <End Type="jQMOrderDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="jQMOrderDBModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="jQMOrderDBModelStoreContainer" CdmEntityContainer="jQMOrderDBEntities">
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="IsTypeOf(jQMOrderDBModel.Order)">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="IsTypeOf(jQMOrderDBModel.Product)">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

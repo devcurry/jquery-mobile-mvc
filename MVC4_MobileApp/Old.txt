@@ -1,0 +1,36 @@
+﻿    //function loadproducts()
+         //{
+         //    $.ajax({
+         //        type: "GET",
+         //        url: "/api/Product",
+         //        contentType: "application/json; charset=utf-8",
+         //        dataType: "json",
+         //        success: function (data)
+         //        {
+         //            //Convert the JSON Response into an Array 
+         //            var ary = $.map(data, function (i, idx) {
+         //                return [[i.ProductId, i.ProductName]];
+         //            });
+
+
+         //            //Display the Data into the Select
+         //            var res = '';
+         //            $.each(ary, function (idx, val) {
+         //                res += '<option value="' + val[0] + '">' + val[1] + '</option>';
+         //            });
+                     
+         //            //Append the Data into the Select
+         //            $("#lstproductname").append(res);
+         //            //Raise the change Event
+         //            $("#lstproductname").trigger('change');
+
+         //            alert(res);
+
+         //            alert("Post Success");
+         //        },
+         //        error: function (err)
+         //        {
+         //            alert("Error " + err.status);
+         //        }
+         //    });
+         //}
